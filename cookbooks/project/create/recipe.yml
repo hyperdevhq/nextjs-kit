@@ -18,6 +18,20 @@ variables:
     default: eslint
 
 steps:
+  - name: Create directory structure (with src)
+    tool: ensure-dirs
+    when: "useSrcDir === true"
+    paths:
+      - "{{ name }}/public"
+      - "{{ name }}/src/app"
+
+  - name: Create directory structure (without src)
+    tool: ensure-dirs
+    when: "useSrcDir === false"
+    paths:
+      - "{{ name }}/public"
+      - "{{ name }}/app"
+
   - name: Generate project files
     sequence:
       - name: Generate package.json
