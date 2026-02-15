@@ -6,10 +6,10 @@
  * and generate type-safe boilerplate.
  */
 
-export * from './parse-tsx'
-export * from './parse-types'
-export * from './parse-server-actions'
-export * from './parse-prisma-schema'
-export * from './parse-drizzle-schema'
-export * from './detect-project'
-export * from './inflections'
+export * from "./parse-tsx";
+export * from "./parse-types";
+export * from "./parse-server-actions";
+export * from "./parse-prisma-schema";
+export * from "./parse-drizzle-schema";
+export * from "./detect-project";
+export * from "./inflections";
