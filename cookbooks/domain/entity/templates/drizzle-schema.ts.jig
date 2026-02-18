@@ -9,7 +9,9 @@ to: db/schema/{{ name }}.ts
   @context()
 Entity: {{ modelName }}
 Table name: {{ tableName }}
+@if(fieldDescriptions)
 Fields: {{ fieldDescriptions }}
+@end
 @if(relations)
 Relations: {{ relations }}
 @end
@@ -35,7 +37,9 @@ import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core'
   @context()
 Entity: {{ modelName }}
 Table name: {{ tableName }}
+@if(fieldDescriptions)
 Fields: {{ fieldDescriptions }}
+@end
   @end
   @prompt()
 Generate a Drizzle ORM table definition for {{ modelName }}.

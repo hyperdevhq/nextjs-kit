@@ -24,20 +24,21 @@ variables:
     type: string
     description: Comma-separated fields with types (e.g., "name:string,email:string,role:enum")
     required: false
-    prompt: |
-      Enter fields (comma-separated, format: name:type)
-      Leave empty for AI to infer from entity name
-      Example: name:string,email:string,isActive:boolean
+    prompt: What properties does the entity have?
 
   relations:
     type: string
     description: Comma-separated relations (e.g., "belongsTo:organization,hasMany:todos")
     required: false
+    prompt: |
+      Does the entity have any relationships?
 
   withRepository:
     type: boolean
-    description: Also generate a repository interface and ORM implementation
+    description: Set to `true` to also generate a repository interface and ORM implementation
     default: false
+    prompt: |
+      Do you want to also generate a Repository for this entity?
 
 onSuccess: |
   Entity '{{ name }}' generated successfully!
@@ -90,7 +91,7 @@ steps:
         echo "none"
       @end
     exports:
-      detectedOrm: "{{ result.stdout.trim() }}"
+      detectedOrm: '{{ result.stdout.trim() }}'
 
   - name: Generate Zod validation schema
     tool: template
@@ -114,7 +115,6 @@ steps:
   - name: Generate repository
     tool: recipe
     recipe: ../../repository
-    when: "withRepository === true"
+    when: 'withRepository === true'
     args:
-      name: "{{ name }}"
-
+      name: '{{ name }}'

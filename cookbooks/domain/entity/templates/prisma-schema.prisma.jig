@@ -11,7 +11,9 @@ skip_if: "model {{ pascalCase(name) }}"
 @ai({ key: 'prismaModel' })
   @context()
 Entity: {{ modelName }}
+@if(fieldDescriptions)
 Fields: {{ fieldDescriptions }}
+@end
 @if(relations)
 Relations: {{ relations }}
 @end
